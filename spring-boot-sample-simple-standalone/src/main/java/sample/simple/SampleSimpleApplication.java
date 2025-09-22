@@ -16,28 +16,27 @@
 
 package sample.simple;
 
+import sample.simple.client.IRun;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import sample.simple.service.HelloWorldService;
-
 @SpringBootApplication
 public class SampleSimpleApplication implements CommandLineRunner {
 
-	// Simple example shows how a command line spring application can execute an
-	// injected bean service. Also demonstrates how you can use @Value to inject
-	// command line args ('--name=whatever') or application properties
+    // Simple example shows how a command line spring application can execute an
+    // injected bean service. Also demonstrates how you can use @Value to inject
+    // command line args ('--name=whatever') or application properties
 
-	@Autowired
-	private HelloWorldService helloWorldService;
+    @Autowired
+    private IRun run;
 
-	public void run(String... args) {
-		System.out.println(this.helloWorldService.getHelloMessage());
-	}
+    public void run(String... args) {
+        this.run.run();
+    }
 
-	public static void main(String[] args) throws Exception {
-		SpringApplication.run(SampleSimpleApplication.class, args);
-	}	
+    public static void main(String[] args) throws Exception {
+        SpringApplication.run(SampleSimpleApplication.class, args);
+    }
 }
