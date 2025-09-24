@@ -1,5 +1,7 @@
 package sample.simple.bank;
 
+import sample.simple.client.Client;
+
 public interface IBank {
-    public boolean transfert(Client client1, Client client2, double montant)
+    public boolean transfert(Client client1, Client client2, double montant);
 }
