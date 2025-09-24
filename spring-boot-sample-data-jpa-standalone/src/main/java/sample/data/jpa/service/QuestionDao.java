@@ -8,4 +8,5 @@ import sample.data.jpa.domain.Question;
 @Transactional
 public interface QuestionDao extends JpaRepository<Question, Long> {
 
+    // TODO
 }

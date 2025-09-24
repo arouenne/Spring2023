@@ -2,17 +2,16 @@ package sample.data.jpa.domain;
 
 import jakarta.persistence.*;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
+
 
 @Entity
 @Table(name = "question_choice")
 public class QuestionChoice {
     private Long id;
 
-    @NotNull
     private String title;
 
-    @NotNull
     private boolean correct;
 
     @ManyToOne

@@ -2,16 +2,13 @@ package sample.data.jpa.domain;
 
 import jakarta.persistence.*;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
-@Table(name = "question")
 public class Question extends Activity {
-    @NotNull
     private String title;
 
-    @NotNull
     private List<QuestionChoice> choices;
 
     private Long id;
