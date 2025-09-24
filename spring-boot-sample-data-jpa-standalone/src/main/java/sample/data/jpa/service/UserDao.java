@@ -5,8 +5,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import sample.data.jpa.domain.User;
 
-// Imports ...
-
 @Transactional
 public interface UserDao extends JpaRepository<User, Long> {
 
