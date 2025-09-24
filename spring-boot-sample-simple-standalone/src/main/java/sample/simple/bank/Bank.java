@@ -4,4 +4,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Bank implements IBank {
+    @Override
+    public boolean transfert(Client client1, Client client2, double montant){
+        System.out.println("Transfert " + montant + " from " + client1 + " to " + client2);
+        return true;
+    }
 }
