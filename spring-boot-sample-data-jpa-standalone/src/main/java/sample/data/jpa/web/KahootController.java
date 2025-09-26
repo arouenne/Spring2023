@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import sample.data.jpa.domain.Kahoot;
+import sample.data.jpa.domain.User;
+import sample.data.jpa.dto.KahootUserUpdateDto;
 import sample.data.jpa.service.KahootDao;
-import sample.data.jpa.service.QuestionDao;
+import sample.data.jpa.service.UserDao;
 
 import java.util.List;
 
@@ -62,7 +64,7 @@ public class KahootController {
     }
 
     /**
-     * GET / --> Return all users in database.
+     * GET / --> Return all kahoots in database.
      */
     @RequestMapping("/kahoots")
     @ResponseBody
@@ -70,9 +72,34 @@ public class KahootController {
         return kahootDao.findAll();
     }
 
+    @PostMapping("/add_user")
+    @ResponseBody
+    public String addUser(@RequestBody KahootUserUpdateDto kahootUserUpdateDto) {
+        try {
+            User incomingUser = kahootUserUpdateDto.getUser();
+            User user = userDao.findByEmail(incomingUser.getEmail());
+            if (user == null) {
+                user = userDao.save(new User(incomingUser.getEmail(), incomingUser.getName()));
+            }
+
+            Kahoot kahoot = kahootDao.findById(kahootUserUpdateDto.getId())
+                    .orElseThrow(() -> new RuntimeException("Kahoot not found with ID: " + kahootUserUpdateDto.getId()));
+
+            List<User> users = kahoot.getUsers();
+            users.add(user);
+            kahoot.setUsers(users);
+
+            kahootDao.save(kahoot);
+
+            return "Added user in kahoot = " + kahoot.getId();
+        } catch (Exception ex) {
+            return "Error adding the user in kahoot: " + ex.toString();
+        }
+    }
+
     @Autowired
     private KahootDao kahootDao;
 
     @Autowired
-    private QuestionDao question;
+    private UserDao userDao;
 }

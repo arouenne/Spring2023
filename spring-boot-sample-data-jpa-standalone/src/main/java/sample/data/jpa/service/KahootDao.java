@@ -7,5 +7,6 @@ import sample.data.jpa.domain.Kahoot;
 @Transactional
 public interface KahootDao extends JpaRepository<Kahoot, Long> {
 
-    // TODO
+    // TODO MapStruct
+
 }

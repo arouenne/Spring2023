@@ -105,6 +105,15 @@ public class UserController {
         return userDao.findAll();
     }
 
+    /**
+     * GET / --> Return the authors of the application.
+     */
+    @RequestMapping("/authors")
+    @ResponseBody
+    public List<User> getAuthors() {
+        return userDao.findAuthors();
+    }
+
     @Autowired
     private UserDao userDao;
 
