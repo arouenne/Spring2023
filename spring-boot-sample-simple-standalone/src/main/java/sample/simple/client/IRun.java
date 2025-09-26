@@ -1,5 +1,5 @@
 package sample.simple.client;
 
-public interface IRun {
+public interface IRun extends Runnable {
     public void run();
 }

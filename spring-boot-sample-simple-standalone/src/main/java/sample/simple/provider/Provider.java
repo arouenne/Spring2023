@@ -6,13 +6,13 @@ import org.springframework.stereotype.Component;
 public class Provider implements IProvider {
 
     @Override
-    public double getPrice() {
-        System.out.println("Article price: 50");
-        return 50;
+    public double getPrice(String article) {
+        System.out.println(article + " price: 14");
+        return 14;
     }
 
     @Override
-    public void order(int quantity) {
-        System.out.println("Ordered "+ quantity +" articles.");
+    public void order(String article, int quantity) {
+        System.out.println("Réapprovisionne " + quantity + " " + article);
     }
 }

@@ -1,7 +1,7 @@
 package sample.simple.provider;
 
 public interface IProvider {
-    public double getPrice();
+    public double getPrice(String article);
 
-    public void order(int quantity);
+    public void order(String article, int quantity);
 }
